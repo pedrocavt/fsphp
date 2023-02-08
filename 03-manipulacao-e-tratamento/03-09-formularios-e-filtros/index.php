@@ -8,11 +8,50 @@ fullStackPHPClassName("03.09 - Formuários e filtros");
  */
 fullStackPHPClassSession("request", __LINE__);
 
+$form = new StdClass();
+$form->name = "Um nome";
+$form->mail = "um@email.com";
+
+var_dump($_REQUEST);
+
+$form->method = "get";
+$form->method = "post";
+
+include __DIR__ . "/form.php";
+
 
 /*
  * [ post ] $_POST | INPUT_POST | filter_input | filter_var
  */
 fullStackPHPClassSession("post", __LINE__);
+
+var_dump($_POST);
+
+$post = filter_input(INPUT_POST, "name", FILTER_DEFAULT);
+$postArray = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+var_dump([
+    $post,
+    $postArray
+]);
+
+
+
+if ($postArray) {
+    if (in_array("", $postArray)) {
+        echo "<p class='trigger warning'>Preencha todos os campos</p>";
+    } elseif (!filter_var($postArray['mail'], FILTER_VALIDATE_EMAIL)) {
+        echo "<p class='trigger warning'>E-mail inválido</p>";
+    } else {
+        $saveStrip = array_map("strip_tags", $postArray);
+        $save = array_map("trim", $saveStrip);
+
+        var_dump($saveStrip, $save);
+
+        echo "<p class='trigger accept'>Cadastro feito!</p>";
+    }
+}
+
 
 
 /*
