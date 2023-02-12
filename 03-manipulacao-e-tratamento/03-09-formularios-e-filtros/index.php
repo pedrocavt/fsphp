@@ -59,9 +59,34 @@ if ($postArray) {
  */
 fullStackPHPClassSession("get", __LINE__);
 
+var_dump($_GET);
+
+$get = filter_input(INPUT_GET, "mail", FILTER_DEFAULT);
+$arrayGet = filter_input_array(INPUT_GET, FILTER_DEFAULT);
+
+var_dump($get, $arrayGet);
+
+$form->method = "get";
+include __DIR__ . "/form.php";
 
 /*
  * [ filters ] list | id | var[_array] | input[_array]
  * http://php.net/manual/pt_BR/filter.constants.php
  */
 fullStackPHPClassSession("filters", __LINE__);
+
+
+$filterForm = [
+    "name" => FILTER_SANITIZE_SPECIAL_CHARS,
+    "mail" => FILTER_VALIDATE_EMAIL
+];
+
+$getForm = filter_input_array(INPUT_GET, $filterForm);
+var_dump($getForm);
+
+$email = "pedrocavt@gmail.com";
+
+var_dump(
+    filter_var($email, FILTER_VALIDATE_EMAIL),
+    filter_var_array($getForm, $filterForm)
+);
