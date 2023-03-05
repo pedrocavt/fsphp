@@ -1,0 +1,20 @@
+{
+    "name": "project/pedrao",
+    "description": "Ronald",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Pedro",
+            "email": "pedrocavt@gmail.com",
+            "role": "Brabo Developer"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        }   
+    }
+}
