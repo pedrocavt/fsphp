@@ -10,6 +10,9 @@ require __DIR__ . "/source/autoload.php";
  */
 fullStackPHPClassSession("__construct", __LINE__);
 
+$user = new \Source\Interpretation\User("Pedro", "Vitor", "pedro@gmail.com");
+
+var_dump($user);
 
 /*
  * [ clone ] Executado automaticamente quando um novo objeto é criado a partir do operador clone.
@@ -17,6 +20,17 @@ fullStackPHPClassSession("__construct", __LINE__);
  */
 fullStackPHPClassSession("__clone", __LINE__);
 
+//manipula o mesmo objeto (referencia)
+$vitor = $user;
+
+$vitor->setFirstName("Vitor");
+
+var_dump($vitor, $user);
+
+//clona o objeto
+$tiago = clone $user;
+
+var_dump($tiago, $user);
 
 /*
  * [ destruct ] Executado automaticamente quando o objeto é finalizado
